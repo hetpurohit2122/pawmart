@@ -1,0 +1,24 @@
+{
+  "overview": "PawMart is a full-stack pet store ecommerce platform where you can browse and buy pet food, clothing, belts, toys, and accessories. It features user accounts, shopping cart, wishlist, product search and filtering, and customer reviews — all in a clean and professional design.",
+  "features": [
+    "Product catalog with 5+ categories (food, clothing, belts, toys, accessories)",
+    "Price range filter and category tabs",
+    "Real-time product search",
+    "Shopping cart with quantity management",
+    "Wishlist to save favorite items",
+    "User sign up, sign in, and account management",
+    "Product reviews and star ratings",
+    "Responsive design for mobile and desktop"
+  ],
+  "category": "ecommerce",
+  "tags": [
+    "ecommerce",
+    "pet-store",
+    "shopping-cart",
+    "wishlist",
+    "reviews",
+    "product-catalog",
+    "authorization"
+  ],
+  "last_updated": "2026-04-10T17:50:49.077Z"
+}

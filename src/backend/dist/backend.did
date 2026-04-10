@@ -1,0 +1,78 @@
+type UserRole = 
+ variant {
+   admin;
+   guest;
+   user;
+ };
+type UserProfile = record {name: text;};
+type UserId = principal;
+type Timestamp = int;
+type SortOrder = 
+ variant {
+   PriceAsc;
+   PriceDesc;
+ };
+type Review = 
+ record {
+   comment: text;
+   createdAt: Timestamp;
+   productId: ProductId;
+   rating: nat;
+   reviewer: UserId;
+ };
+type ProductId = nat;
+type ProductFilter = 
+ record {
+   category: opt Category;
+   keyword: opt text;
+   maxPrice: opt nat;
+   minPrice: opt nat;
+   sortOrder: opt SortOrder;
+ };
+type Product = 
+ record {
+   averageRating: float64;
+   category: Category;
+   description: text;
+   id: ProductId;
+   imageUrl: text;
+   name: text;
+   price: nat;
+   reviewCount: nat;
+   stock: nat;
+ };
+type Category = 
+ variant {
+   Accessories;
+   Belts;
+   Clothing;
+   PetFood;
+   Toys;
+ };
+type CartItem = 
+ record {
+   productId: ProductId;
+   quantity: nat;
+ };
+service : {
+  _initializeAccessControl: () -> ();
+  addReview: (productId: ProductId, rating: nat, comment: text) -> (bool);
+  addToCart: (productId: nat, quantity: nat) -> ();
+  addToWishlist: (productId: ProductId) -> ();
+  assignCallerUserRole: (user: principal, role: UserRole) -> ();
+  clearCart: () -> ();
+  getCallerUserProfile: () -> (opt UserProfile) query;
+  getCallerUserRole: () -> (UserRole) query;
+  getCart: () -> (vec CartItem) query;
+  getProduct: (id: ProductId) -> (opt Product) query;
+  getReviews: (productId: ProductId) -> (vec Review) query;
+  getUserProfile: (user: principal) -> (opt UserProfile) query;
+  getWishlist: () -> (vec ProductId) query;
+  isCallerAdmin: () -> (bool) query;
+  listProducts: (filter: ProductFilter) -> (vec Product) query;
+  removeFromCart: (productId: nat) -> ();
+  removeFromWishlist: (productId: ProductId) -> ();
+  saveCallerUserProfile: (profile: UserProfile) -> ();
+  searchProducts: (keyword: text) -> (vec Product) query;
+  updateCartItem: (productId: nat, quantity: nat) -> ();
+}
